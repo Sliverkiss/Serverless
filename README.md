@@ -24,6 +24,7 @@
 | 名称 | 特性 |在线地址 | 状态|
 | --- | --- | --- |---|
 | SillyDev |silly自动刷积分 | | 有效中|
+| bark-server |bark推送服务器搭建 | | 有效中|
 
 
 ## Star History
