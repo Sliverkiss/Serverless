@@ -1,6 +1,6 @@
 const express = require('express');
 const TelegramBot = require('node-telegram-bot-api');
-const { "X-XSRF-Token": token, Cookie: ck,tgBotToken } = require('./conf.json');
+const { "X-XSRF-Token": token, Cookie: ck, tgBotToken } = require('./config.json');
 const SERVER = process.env.SERVER_IP;
 const PORT = process.env.SERVER_PORT;
 const app = express();
@@ -18,7 +18,7 @@ bot.onText(/\/help/, (msg) => {
         "Available commands:\n" +
         "/info - 查看Silly个人信息\n" +
         "/server - 查看当前服务器信息\n" +
-        "/renew - 服务器续期\n"+
+        "/renew - 服务器续期\n" +
         "/resources - 兑换服务器资源"
     );
 });
@@ -232,46 +232,42 @@ setInterval(getEarn, 6e4);
 //--—-----------------辅助函数区域---—--------------
 //封装请求方法
 async function get(api) {
-    const res = await fetch(`https://panel.sillydev.co.uk${api}`, {
+    const res = await fetch(`https://panel.sillydevelopment.co.uk${api}`, {
         headers: {
-            'accept': 'application/json',
-            'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8',
-            'cache-control': 'no-cache',
-            'cookie': ck,
-            'pragma': 'no-cache',
-            'priority': 'u=1, i',
-            'referer': 'https://panel.sillydev.co.uk/store',
-            'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"macOS"',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-            'x-requested-with': 'XMLHttpRequest',
-            'x-xsrf-token': token
+            'X-Requested-With': `XMLHttpRequest`,
+            'Sec-Fetch-Dest': `empty`,
+            'Connection': `keep-alive`,
+            'Accept-Encoding': `gzip, deflate, br`,
+            'X-XSRF-TOKEN': token,
+            'Sec-Fetch-Site': `same-origin`,
+            'User-Agent': `Mozilla/5.0 (iPad; CPU OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/111.0.5563.101 Mobile/15E148 Safari/604.1`,
+            'Sec-Fetch-Mode': `cors`,
+            'Cookie': ck,
+            'Referer': `https://panel.sillydevelopment.co.uk/`,
+            'Host': `panel.sillydevelopment.co.uk`,
+            'Accept-Language': `zh-CN,zh-Hans;q=0.9`,
+            'Accept': `application/json`
         }
     }).then(res => res.json());
     return res;
 }
 
 async function post(api, data = {}) {
-    const url = `https://panel.sillydev.co.uk${api}`;
+    const url = `https://panel.sillydevelopment.co.uk${api}`;
     const headers = {
-        'X-Requested-With': 'XMLHttpRequest',
-        'Sec-Fetch-Dest': 'empty',
-        'Connection': 'keep-alive',
-        'X-XSRF-TOKEN': token, // 确保这个 token 在函数作用域中定义
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Sec-Fetch-Site': 'same-origin',
-        'Origin': 'https://panel.sillydev.co.uk',
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15',
-        'Sec-Fetch-Mode': 'cors',
-        'Cookie': ck, // 确保这个 ck 在函数作用域中定义
-        'Host': 'panel.sillydev.co.uk',
-        'Referer': 'https://panel.sillydev.co.uk/store/resources',
-        'Accept': 'application/json',
-        'Content-Type': 'application/json' // 确保发送的数据格式正确
+        'X-Requested-With': `XMLHttpRequest`,
+        'Sec-Fetch-Dest': `empty`,
+        'Connection': `keep-alive`,
+        'Accept-Encoding': `gzip, deflate, br`,
+        'X-XSRF-TOKEN': token,
+        'Sec-Fetch-Site': `same-origin`,
+        'Origin': `https://panel.sillydevelopment.co.uk`,
+        'User-Agent': `Mozilla/5.0 (iPad; CPU OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/111.0.5563.101 Mobile/15E148 Safari/604.1`,
+        'Sec-Fetch-Mode': `cors`,
+        'Cookie': ck,
+        'Host': `panel.sillydevelopment.co.uk`,
+        'Accept-Language': `zh-CN,zh-Hans;q=0.9`,
+        'Accept': `application/json`
     };
 
     try {
