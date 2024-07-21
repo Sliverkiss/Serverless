@@ -6,7 +6,7 @@
 1. 一枚邮箱，不建议使用qq邮箱。
 
 ### 二、部署服务。
-1. 打开 Silly 的网站：https://panel.sillydev.co.uk/auth/login ，然后点击里面的“Signup with email”进行注册。如有账户直接登录即可。
+1. 打开 Silly 的网站：https://panel.sillydevelopment.co.uk ，然后点击里面的“Signup with email”进行注册。如有账户直接登录即可。
 
 <img width="600px" src="https://pic2.ziyuan.wang/user/tistzach/2024/05/截屏2024-05-21 20.40.25_0cb4c50ce38c4.png" alt="kkk.png" title="kkk.png" />
 
