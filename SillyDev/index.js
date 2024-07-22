@@ -1,6 +1,6 @@
 const express = require('express');
 const TelegramBot = require('node-telegram-bot-api');
-const { "X-XSRF-Token": token, Cookie: ck,tgBotToken } = require('./config.json');
+const { "X-XSRF-Token": token, Cookie: ck, tgBotToken, "User-Agent": ua } = require('./config.json');
 const SERVER = process.env.SERVER_IP;
 const PORT = process.env.SERVER_PORT;
 const app = express();
@@ -18,7 +18,7 @@ bot.onText(/\/help/, (msg) => {
         "Available commands:\n" +
         "/info - 查看Silly个人信息\n" +
         "/server - 查看当前服务器信息\n" +
-        "/renew - 服务器续期\n"+
+        "/renew - 服务器续期\n" +
         "/resources - 兑换服务器资源"
     );
 });
@@ -234,19 +234,19 @@ setInterval(getEarn, 6e4);
 async function get(api) {
     const res = await fetch(`https://panel.sillydevelopment.co.uk${api}`, {
         headers: {
-'X-Requested-With' : `XMLHttpRequest`,
-'Sec-Fetch-Dest' : `empty`,
-'Connection' : `keep-alive`,
-'Accept-Encoding' : `gzip, deflate, br`,
-'X-XSRF-TOKEN' : token,
-'Sec-Fetch-Site' : `same-origin`,
-'User-Agent' : `Mozilla/5.0 (iPad; CPU OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/111.0.5563.101 Mobile/15E148 Safari/604.1`,
-'Sec-Fetch-Mode' : `cors`,
-'Cookie' : ck,
-'Referer' : `https://panel.sillydevelopment.co.uk/`,
-'Host' : `panel.sillydevelopment.co.uk`,
-'Accept-Language' : `zh-CN,zh-Hans;q=0.9`,
-'Accept' : `application/json`
+            'X-Requested-With': `XMLHttpRequest`,
+            'Sec-Fetch-Dest': `empty`,
+            'Connection': `keep-alive`,
+            'Accept-Encoding': `gzip, deflate, br`,
+            'X-XSRF-TOKEN': token,
+            'Sec-Fetch-Site': `same-origin`,
+            'User-Agent': ua || `Mozilla/5.0 (iPad; CPU OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/111.0.5563.101 Mobile/15E148 Safari/604.1`,
+            'Sec-Fetch-Mode': `cors`,
+            'Cookie': ck,
+            'Referer': `https://panel.sillydevelopment.co.uk/`,
+            'Host': `panel.sillydevelopment.co.uk`,
+            'Accept-Language': `zh-CN,zh-Hans;q=0.9`,
+            'Accept': `application/json`
         }
     }).then(res => res.json());
     return res;
@@ -254,19 +254,20 @@ async function get(api) {
 
 async function post(api, data = {}) {
     const url = `https://panel.sillydevelopment.co.uk${api}`;
-    const headers = {'X-Requested-With' : `XMLHttpRequest`,
-'Sec-Fetch-Dest' : `empty`,
-'Connection' : `keep-alive`,
-'Accept-Encoding' : `gzip, deflate, br`,
-'X-XSRF-TOKEN' : token,
-'Sec-Fetch-Site' : `same-origin`,
-'Origin' : `https://panel.sillydevelopment.co.uk`,
-'User-Agent' : `Mozilla/5.0 (iPad; CPU OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/111.0.5563.101 Mobile/15E148 Safari/604.1`,
-'Sec-Fetch-Mode' : `cors`,
-'Cookie' : ck,
-'Host' : `panel.sillydevelopment.co.uk`,
-'Accept-Language' : `zh-CN,zh-Hans;q=0.9`,
-'Accept' : `application/json`
+    const headers = {
+        'X-Requested-With': `XMLHttpRequest`,
+        'Sec-Fetch-Dest': `empty`,
+        'Connection': `keep-alive`,
+        'Accept-Encoding': `gzip, deflate, br`,
+        'X-XSRF-TOKEN': token,
+        'Sec-Fetch-Site': `same-origin`,
+        'Origin': `https://panel.sillydevelopment.co.uk`,
+        'User-Agent': ua || `Mozilla/5.0 (iPad; CPU OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/111.0.5563.101 Mobile/15E148 Safari/604.1`,
+        'Sec-Fetch-Mode': `cors`,
+        'Cookie': ck,
+        'Host': `panel.sillydevelopment.co.uk`,
+        'Accept-Language': `zh-CN,zh-Hans;q=0.9`,
+        'Accept': `application/json`
     };
 
     try {
