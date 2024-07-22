@@ -39,6 +39,7 @@
 | tgBotToken    |  Yes      |      | 可以通过bot来管理面板  |
 | X-XSRF-Token  |  Yes     |      | 自行通过抓包获取 |
 | Cookie        |  Yes     |      | 自行通过抓包获取 |
+| Cookie        |  No     |      | 自行通过抓包获取 |
 
 > Bot指令如下：
 
