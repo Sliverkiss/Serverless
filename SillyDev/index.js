@@ -272,7 +272,6 @@ async function get(api) {
             Connection: "keep-alive",
             Cookie: ck,
             Host: "panel.sillydevelopment.co.uk",
-
             Referer: "https://panel.sillydevelopment.co.uk/",
             "Sec-Fetch-Mode": "cors",
             "Sec-Fetch-Dest": "empty",
